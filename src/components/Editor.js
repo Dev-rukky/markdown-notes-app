@@ -1,8 +1,9 @@
 import ReactMde from "react-mde";
 import showndown from "showndown";
+import { useState } from "react";
 
 const Editor = ({ currentNote, updateNote }) => {
-    const [selectedTab, setSelectedTab] = React.useState("write");
+    const [selectedTab, setSelectedTab] = useState("write");
 
     const converter = new showndown.Converter({
         tables: true,

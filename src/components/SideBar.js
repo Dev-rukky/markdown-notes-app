@@ -24,3 +24,5 @@ const SideBar = (props) => {
         </section>
     )
 }
+
+export default SideBar
