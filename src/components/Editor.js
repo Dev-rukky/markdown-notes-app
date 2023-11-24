@@ -1,11 +1,12 @@
 import ReactMde from "react-mde";
-import showndown from "showndown";
+import "react-mde/lib/styles/css/react-mde-all.css";
+import showdown from "showdown";
 import { useState } from "react";
 
 const Editor = ({ currentNote, updateNote }) => {
     const [selectedTab, setSelectedTab] = useState("write");
 
-    const converter = new showndown.Converter({
+    const converter = new showdown.Converter({
         tables: true,
         simplifiedAutoLink: true,
         strikethrough: true,
