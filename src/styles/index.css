@@ -41,7 +41,7 @@ button:focus {
   align-items: center;
 }
 
-.sidebar--header > h3 {
+.sidebar--header>h3 {
   font-size: 1.75rem;
 }
 
