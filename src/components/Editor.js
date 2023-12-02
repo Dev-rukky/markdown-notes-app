@@ -3,7 +3,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import showdown from "showdown";
 import { useState } from "react";
 
-export default function Editor({ currentNote, updateNote }) {
+function Editor({ currentNote, updateNote }) {
     const [selectedTab, setSelectedTab] = useState("write")
 
     const converter = new showdown.Converter({
@@ -29,3 +29,5 @@ export default function Editor({ currentNote, updateNote }) {
         </section>
     )
 }
+
+export default Editor
