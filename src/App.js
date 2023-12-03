@@ -9,7 +9,7 @@ import './styles/App.css';
 
 function App() {
 
-  const [notes, setNotes] = useState( ()=> JSON.parse(localStorage.getItem("notes")) || [])
+  const [notes, setNotes] = useState(() => JSON.parse(localStorage.getItem("notes")) || [])
   const [currentNoteId, setCurrentNoteId] = useState(
     (notes[0] && notes[0].id) || ""
   )
@@ -29,11 +29,26 @@ function App() {
   }
 
   const updateNote = (text) => {
-    setNotes(oldNotes => oldNotes.map(oldNotes => {
-      return oldNotes.id === currentNoteId
-        ? { ...oldNotes, body: text }
-        : oldNotes
-    }))
+    setNotes(oldNotes => {
+      const newArray = []
+      for (let i = 0; i < oldNotes.length; i++) {
+        const oldNote = oldNotes[i]
+        if (oldNote.id === currentNoteId) {
+          newArray.unshift({ ...oldNote, body: text })
+        }
+        else {
+          newArray.push(oldNote);
+        }
+      }
+
+      return newArray
+    })
+  }
+
+  function deleteNote(event, noteId) {
+    event.stopPropagation()
+    setNotes(oldNotes => oldNotes.filter(note => note.id !== noteId))
+    console.log("deleted note", noteId)
   }
 
   const findCurrentNote = () => {
@@ -57,6 +72,7 @@ function App() {
               currentNote={findCurrentNote()}
               setCurrentNoteId={setCurrentNoteId}
               newNote={createNewNote}
+              deleteNote={deleteNote}
             />
             {
               currentNoteId &&
